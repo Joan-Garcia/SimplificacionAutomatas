@@ -12,7 +12,6 @@ public class Simplifica {
     
     for (int i = 0; i < a.getEstados().length; i++) {
       
-          
     }
   }
 }
