@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Automata {
   private final int numeroEstados, numeroSimbolos, numeroEstadosFinales;
   private final String[] alfabeto, estados, estadosFinales;
-  private final String estadoInicial;
+  private String estadoInicial;
   private final ArrayList <ArrayList<String>> tablaTransiciones;
   
   public Automata(String[] alfabeto, String[] estados, String[] estadosFinales,
@@ -109,4 +109,8 @@ public class Automata {
     return tablaTransiciones;
   }
   
+  // Cambia el estado inicial del automata
+  public void setEstadoInicial(String estado) {
+    estadoInicial = estado;
+  }
 }
