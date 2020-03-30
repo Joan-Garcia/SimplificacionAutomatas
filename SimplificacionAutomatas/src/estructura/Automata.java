@@ -75,6 +75,19 @@ public class Automata {
     return estadoSiguiente;
   }
   
+  public void eliminaEstado(String q1, String q2) {                             // q2 es el estado que se va a eliminar
+    for (int i = 0; i < tablaTransiciones.size(); i++) {                        // q1 es el estado equivalente de q2
+      if(tablaTransiciones.get(i).get(0).equals(q2)) {                          // Por lo tanto todas las flechas que apunten a q2
+        tablaTransiciones.remove(i);                                            // ahora apuntaran a q1.
+        i--;
+      }
+      if(tablaTransiciones.get(i).get(2).equals(q2)) {
+        tablaTransiciones.get(i).remove(2);
+        tablaTransiciones.get(i).add(q1);
+      }
+    }
+  }
+  
   // --- Métodos de acceso ---
   
   public int getNumeroEstados() {

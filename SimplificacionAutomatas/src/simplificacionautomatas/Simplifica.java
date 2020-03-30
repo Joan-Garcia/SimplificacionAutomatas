@@ -9,15 +9,17 @@ public class Simplifica {
   }
   
   public void algoritmo(Automata a){
-    Automata b = a;
+    Automata b;
     String[] estados;
     estados = a.getEstados();
-    for (int i = 0; i < a.getEstados().length; i++) {
-      a.setEstadoInicial(estados[i + 1]);
-      b.setEstadoInicial(estados[i + 2]);
+    for (int i = 0; i < a.getEstados().length - 2; i++) {
+      b = a;
+        System.out.println("tamaño estados: "+estados.length+" estados[i]"+estados[i]);
+      a.setEstadoInicial(estados[i]);
+      b.setEstadoInicial(estados[i + 1]);
       
       if (equivalencia.algoritmo(a, b)) {
-        
+        a.eliminaEstado(estados[i + 1], estados[i + 2]);
       }
     }
   }
