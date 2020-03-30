@@ -11,15 +11,17 @@ public class PruebaAutomata {
     String estadoInicial = "q0";
     
     
-    Automata automata = new Automata(alfabeto, estados, estadosFinales, 
+    Automata a = new Automata(alfabeto, estados, estadosFinales, 
                                      estadoInicial);
-    System.out.println(automata.getTablaTransiciones().toString());
+    System.out.println(a.getTablaTransiciones().toString());
     
-    Simplifica algoritmo = new Simplifica();
-    algoritmo.algoritmo(automata);
+    Simplifica p = new Simplifica();
+    p.algoritmo(a);
     
-//    automata.eliminaEstado("q2", "q1");
+//    a.eliminaEstado("q2", "q1");
+    Automata reducido = p.algoritmo(a);
+
     
-    System.out.println(automata.getTablaTransiciones().toString());
+    System.out.println(reducido.getTablaTransiciones().toString());
   }
 }

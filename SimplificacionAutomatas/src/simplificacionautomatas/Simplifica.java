@@ -29,17 +29,26 @@ public class Simplifica {
     
     // Compara cada par de estados y verificar que son equivalentes: 
     for (int i = 0; i < a. getEstados().length; i++) {                          // Por cada par de estados del autómata a reducir
-      b = new Automata(a.getAlfabeto(), a.getEstados(), a.getEstadosFinales(),  // Crea una copia Mb
-                       a.getEstadoInicial( )); 
-        
+//      b = new Automata(a.getAlfabeto(), a.getEstados(), a.getEstadosFinales(),  // Crea una copia Mb
+//                       a.getEstadoInicial( )); 
+      b = a;
       for (int j = 0; j < b. getEstados().length - 1; j++) {                    // Recorre cada estado de Mb...
-        if(a.getEstadoInicial().equals(b.getEstadoInicial()))                   // Menos el mismo estado.
+          System.out.println("Forj");
+          System.out.println("Ma: "+a.getEstadoInicial()+" Mb: "+b.getEstadoInicial());
+        if(a.getEstadoInicial().equals(b.getEstadoInicial())){                   // Menos el mismo estado.
           j++;                                                                  // Si es el mismo, pasa al siguiente.
-        else
+            System.out.println("j++  "+j);
+        }else{
           b.setEstadoInicial(b.getEstados()[j]);
-        
-        if(equivalencia.algoritmo(a, b))                                        // Si los autómatas son equivalentes.
+            System.out.println("Cambia estado inicial de b: "+b.getEstados()[j]);
+        }
+          System.out.println("Compara la equivalencia de Ma: "+a.getEstadoInicial()+
+                  " Mb: "+ b.getEstadoInicial());
+        if(equivalencia.algoritmo(a, b)){                                        // Si los autómatas son equivalentes.
+            System.out.println("EliminaEstado Ma: "+a.getEstadoInicial()+
+                    " Mb: "+b.getEstadoInicial());
           a.eliminaEstado(a.getEstadoInicial(), b.getEstadoInicial());          //    Elimina de Ma el estado de Mb.
+        }
       }
     
       a.setEstadoInicial(a.getEstados()[i]);                                    // Analiza el siguiente estado.
