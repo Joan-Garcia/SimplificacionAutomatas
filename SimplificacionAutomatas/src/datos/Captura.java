@@ -12,7 +12,7 @@ public class Captura {
   }
 
   public void capturaDefinicionFormal(){
-    System.out.println("Ingrese los datos solicitados del automata ");
+    System.out.println("Ingrese los datos solicitados del automata");
     System.out.print("Ingrese el alfabeto (Separado por comas ','): ");
     alfabeto = entrada.nextLine().split(",");
     System.out.print("Ingrese los estados (Separado por comas ','): ");

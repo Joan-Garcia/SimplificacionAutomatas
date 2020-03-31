@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;  
 
 public class Automata{
-  private final int numeroEstados, numeroSimbolos, numeroEstadosFinales;
-  private final String[] alfabeto, estados, estadosFinales;
+
+    private int numeroEstados;
+    private int numeroSimbolos;
+    private int numeroEstadosFinales;
+    private String[] alfabeto;
+    private String[] estados;
+    private String[] estadosFinales;
   private String estadoInicial;
   private final ArrayList <ArrayList<String>> tablaTransiciones;
   
@@ -102,6 +107,25 @@ public class Automata{
       if(tablaTransiciones.get(i).get(0).equals(q2)) {                          // Por lo tanto todas las flechas que apunten a q2
         tablaTransiciones.remove(i);                                            // ahora apuntaran a q1.
         i--;
+        
+        // Elimina q2 del array estados
+        ArrayList<String> puente = new ArrayList();
+        
+        for(int j = 0; j < estados.length; j++)
+          if (!estados[j].equals(q2))
+            puente.add(estados[j]);
+        estados = new String[estados.length - 1];
+        estados = puente.toArray(estados);
+        numeroEstados = estados.length;
+        
+        // Elimina q2 del array estadosFinales
+        puente.clear();
+        for(int j = 0; j < estadosFinales.length; j++)
+          if(!estadosFinales[j].equals(q2))
+            puente.add(estadosFinales[j]);
+        estadosFinales = new String[estadosFinales.length - 1];
+        estadosFinales = puente.toArray(estadosFinales);
+        numeroEstadosFinales = estadosFinales.length;
       }
       if(tablaTransiciones.get(i).get(2).equals(q2)) {
         tablaTransiciones.get(i).remove(2);

@@ -24,8 +24,8 @@ public class Simplifica {
 //                " Mb: "+ b.getEstadosFinales()[0]);
 //            
           if(new Moore().algoritmo(a, b)){                                      // Si los autómatas son equivalentes.
-            System.out.println("EliminaEstado Ma: "+a.getEstadoInicial()+
-                    " Mb: "+b.getEstadoInicial());
+//            System.out.println("EliminaEstado Ma: "+a.getEstadoInicial()+
+//                    " Mb: "+b.getEstadoInicial());
           a.eliminaEstado(a.getEstadoInicial(), b.getEstadoInicial());          //    Elimina de Ma el estado de Mb.
           }  
         }   
