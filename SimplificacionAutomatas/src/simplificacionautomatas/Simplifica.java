@@ -1,6 +1,7 @@
 package simplificacionautomatas;
 
 import estructura.Automata;
+import java.util.ArrayList;
 
 public class Simplifica {
     Moore equivalencia;
@@ -28,32 +29,36 @@ public class Simplifica {
     Automata b; 
     
     // Compara cada par de estados y verificar que son equivalentes: 
-    for (int i = 0; i < a. getEstados().length; i++) {                          // Por cada par de estados del autómata a reducir
-//      b = new Automata(a.getAlfabeto(), a.getEstados(), a.getEstadosFinales(),  // Crea una copia Mb
-//                       a.getEstadoInicial( )); 
-      b = a;
-      for (int j = 0; j < b. getEstados().length - 1; j++) {                    // Recorre cada estado de Mb...
-          System.out.println("Forj");
-          System.out.println("Ma: "+a.getEstadoInicial()+" Mb: "+b.getEstadoInicial());
-        if(a.getEstadoInicial().equals(b.getEstadoInicial())){                   // Menos el mismo estado.
-          j++;                                                                  // Si es el mismo, pasa al siguiente.
-            System.out.println("j++  "+j);
+    for (int i = 0; i < a.getEstados().length; i++) {                          // Por cada par de estados del autómata a reducir
+      b = new Automata(a.getAlfabeto(), a.getEstados(), a.getEstadosFinales(),  // Crea una copia Mb
+                       a.getEstadoInicial(), (ArrayList <ArrayList<String>>) a.getTablaTransiciones().clone());                                                                     
+      
+      for (int j = 0; j < b.getEstados().length; j++) {                    // Recorre cada estado de Mb...
+//          System.out.println("Forj");
+//          System.out.println("Ma: "+a.getEstadoInicial()+" Mb: "+b.getEstadoInicial());
+        if(a.getEstados()[i].equals(b.getEstados()[j])){                        // Menos el mismo estado.
+          // No hagas nada.                                                                  // Si es el mismo, pasa al siguiente.
         }else{
           b.setEstadoInicial(b.getEstados()[j]);
-            System.out.println("Cambia estado inicial de b: "+b.getEstados()[j]);
-        }
-          System.out.println("Compara la equivalencia de Ma: "+a.getEstadoInicial()+
+            
+            //System.out.println("Cambia estado inicial de b: "+b.getEstados()[j]);
+          
+            System.out.println("Compara la equivalencia de Ma: "+a.getEstadoInicial()+
                   " Mb: "+ b.getEstadoInicial());
-        if(equivalencia.algoritmo(a, b)){                                        // Si los autómatas son equivalentes.
+            System.out.println("Con estados finales de Ma: "+a.getEstadosFinales()[0]+
+                  " Mb: "+ b.getEstadosFinales()[0]);
+            System.out.println(equivalencia.algoritmo(a, b));
+            
+          if(equivalencia.algoritmo(b, a)){                                        // Si los autómatas son equivalentes.
             System.out.println("EliminaEstado Ma: "+a.getEstadoInicial()+
                     " Mb: "+b.getEstadoInicial());
           a.eliminaEstado(a.getEstadoInicial(), b.getEstadoInicial());          //    Elimina de Ma el estado de Mb.
-        }
-      }
-    
-      a.setEstadoInicial(a.getEstados()[i]);                                    // Analiza el siguiente estado.
-    }
-    
+          }  
+        }   
+      } 
+      if((i + 1) != a.getEstados().length)                                      // Si hay un estado siguiente.
+        a.setEstadoInicial(a.getEstados()[i + 1]);                              // Analiza el siguiente estado.
+    }  
     return a;
   }
 }

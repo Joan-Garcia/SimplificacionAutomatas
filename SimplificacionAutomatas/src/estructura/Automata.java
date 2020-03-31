@@ -34,6 +34,21 @@ public class Automata {
     this.capturarTablaTransiciones();
   }
   
+  public Automata(String[] alfabeto, String[] estados, String[] estadosFinales,
+                  String estadoInicial, ArrayList <ArrayList<String>> tablaTransiciones){
+    this.tablaTransiciones = (ArrayList <ArrayList<String>>) tablaTransiciones.clone();
+    
+    this.alfabeto = alfabeto;
+    this.estados = estados;
+    this.estadosFinales = estadosFinales;
+    this.estadoInicial = estadoInicial;
+    
+    numeroEstados = estados.length;
+    numeroSimbolos = alfabeto.length;
+    numeroEstadosFinales = estadosFinales.length;
+    
+  }
+
   private void capturarTablaTransiciones() {
     int x = 0; 
     int y = 0; 
