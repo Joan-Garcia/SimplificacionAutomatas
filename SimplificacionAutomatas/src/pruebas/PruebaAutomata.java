@@ -16,12 +16,14 @@ public class PruebaAutomata {
     System.out.println(a.getTablaTransiciones().toString());
     
     Simplifica p = new Simplifica();
-    p.algoritmo(a);
+//    p.algoritmo(a);
     
 //    a.eliminaEstado("q2", "q1");
-    Automata reducido = p.algoritmo(a);
-
+//    Automata reducido = p.algoritmo(a);
+      System.out.println("Estado inicial: "+a.getEstadoInicial());
+      a.setEstadoInicial("q1");
+      System.out.println("Estado inicial: "+a.getEstadoInicial());
     
-    System.out.println(reducido.getTablaTransiciones().toString());
+//    System.out.println(reducido.getTablaTransiciones().toString());
   }
 }

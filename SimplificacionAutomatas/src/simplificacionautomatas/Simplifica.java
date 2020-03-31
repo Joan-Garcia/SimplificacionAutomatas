@@ -27,12 +27,21 @@ public class Simplifica {
   
   public Automata algoritmo(Automata a){
     Automata b; 
+//    String[] alfabeto, estados, estadosFinales;
+//    String estadoInicial;
+//    ArrayList <ArrayList<String>> tablaTransiciones;
     
     // Compara cada par de estados y verificar que son equivalentes: 
     for (int i = 0; i < a.getEstados().length; i++) {                          // Por cada par de estados del autómata a reducir
-      b = new Automata(a.getAlfabeto(), a.getEstados(), a.getEstadosFinales(),  // Crea una copia Mb
-                       a.getEstadoInicial(), (ArrayList <ArrayList<String>>) a.getTablaTransiciones().clone());                                                                     
+//      alfabeto = a.getAlfabeto();
+//      estados = a.getEstados();
+//      estadosFinales = a.getEstadosFinales();
+//      estadoInicial = a.getEstadoInicial();
+//      tablaTransiciones = a.getTablaTransiciones();
       
+//      b = new Automata(alfabeto, estados, estadosFinales,  // Crea una copia Mb
+//                       estadoInicial, tablaTransiciones);                                                                     
+      b = (Automata)a.clone();
       for (int j = 0; j < b.getEstados().length; j++) {                    // Recorre cada estado de Mb...
 //          System.out.println("Forj");
 //          System.out.println("Ma: "+a.getEstadoInicial()+" Mb: "+b.getEstadoInicial());

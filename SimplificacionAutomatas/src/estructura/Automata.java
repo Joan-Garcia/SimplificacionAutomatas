@@ -3,11 +3,23 @@ package estructura;
 import java.util.ArrayList; 
 import java.util.Scanner;  
 
-public class Automata {
+public class Automata implements Cloneable{
   private final int numeroEstados, numeroSimbolos, numeroEstadosFinales;
   private final String[] alfabeto, estados, estadosFinales;
   private String estadoInicial;
-  private final ArrayList <ArrayList<String>> tablaTransiciones;
+  private ArrayList <ArrayList<String>> tablaTransiciones;
+  
+  @Override
+  public Object clone(){
+    Automata obj=null;
+    try{
+        obj=(Automata)super.clone();
+    }catch(CloneNotSupportedException ex){
+        System.out.println(" no se puede duplicar");
+    }
+    obj.tablaTransiciones=(ArrayList <ArrayList<String>>)obj.tablaTransiciones.clone();
+    return obj;
+  }
   
   public Automata(String[] alfabeto, String[] estados, String[] estadosFinales,
                   String estadoInicial){
