@@ -3,23 +3,11 @@ package estructura;
 import java.util.ArrayList; 
 import java.util.Scanner;  
 
-public class Automata implements Cloneable{
+public class Automata{
   private final int numeroEstados, numeroSimbolos, numeroEstadosFinales;
   private final String[] alfabeto, estados, estadosFinales;
   private String estadoInicial;
-  private ArrayList <ArrayList<String>> tablaTransiciones;
-  
-  @Override
-  public Object clone(){
-    Automata obj=null;
-    try{
-        obj=(Automata)super.clone();
-    }catch(CloneNotSupportedException ex){
-        System.out.println(" no se puede duplicar");
-    }
-    obj.tablaTransiciones=(ArrayList <ArrayList<String>>)obj.tablaTransiciones.clone();
-    return obj;
-  }
+  private final ArrayList <ArrayList<String>> tablaTransiciones;
   
   public Automata(String[] alfabeto, String[] estados, String[] estadosFinales,
                   String estadoInicial){
@@ -47,8 +35,9 @@ public class Automata implements Cloneable{
   }
   
   public Automata(String[] alfabeto, String[] estados, String[] estadosFinales,
-                  String estadoInicial, ArrayList <ArrayList<String>> tablaTransiciones){
-    this.tablaTransiciones = (ArrayList <ArrayList<String>>) tablaTransiciones.clone();
+                  String estadoInicial, 
+                  ArrayList <ArrayList<String>> tablaTransiciones){
+    this.tablaTransiciones = tablaTransiciones;
     
     this.alfabeto = alfabeto;
     this.estados = estados;
@@ -59,6 +48,12 @@ public class Automata implements Cloneable{
     numeroSimbolos = alfabeto.length;
     numeroEstadosFinales = estadosFinales.length;
     
+  }
+  
+  // Constructor para clonar:
+  public Automata(Automata aCopiar){
+    this(aCopiar.alfabeto, aCopiar.estados, aCopiar.estadosFinales, 
+         aCopiar.estadoInicial, aCopiar.tablaTransiciones);
   }
 
   private void capturarTablaTransiciones() {
